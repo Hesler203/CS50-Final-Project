@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpcqpwd1u5kwj"]
+
+[ext_resource type="AudioStream" uid="uid://dhcaa8xojw3y3" path="res://Assets/Sounds/music.mp3" id="1_le08o"]
+[ext_resource type="AudioStream" uid="uid://d3b3fla8w1iv2" path="res://Assets/Sounds/Dumpling_Singing.mp3" id="2_4jn5v"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_le08o")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
+
+[node name="Dumpling_Singing" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_4jn5v")
+autoplay = true
+bus = &"Music"
+parameters/looping = true

@@ -1,0 +1,10 @@
+Godot4 Weather System 2D:
+
+Developed by pirachute - MIT license - https://github.com/pirachute/godot-weather-2D/tree/main
+
+4 Helpful shaders adapted from...
+
+1. Water - https://godotshaders.com/shader/2d-water-with-reflections/
+2. Falling Rain - https://godotshaders.com/shader/simple-rain-snow-shader/
+3. Raindrops on Screen - https://godotshaders.com/shader/rain-drops-on-screen-notexture/
+4. Clouds - https://godotshaders.com/shader/cloudy-skies/

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcv52w5scpn51"]
+
+[ext_resource type="Script" path="res://Scripts/ui.gd" id="1_weaau"]
+[ext_resource type="FontFile" uid="uid://dl7mg7iksf6yp" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_ijw53"]
+[ext_resource type="PackedScene" uid="uid://c48ygexei26u7" path="res://Scenes/coin.tscn" id="3_02mma"]
+
+[node name="UI" type="Node"]
+script = ExtResource("1_weaau")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 21.0
+offset_top = 25.0
+offset_right = 377.0
+offset_bottom = 95.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 8
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_ijw53")
+theme_override_font_sizes/font_size = 30
+text = "You collected 
+ # seebs"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Coin" parent="." instance=ExtResource("3_02mma")]
+position = Vector2(70, 79)
+script = null

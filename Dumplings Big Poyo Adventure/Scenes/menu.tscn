@@ -1,0 +1,196 @@
+[gd_scene load_steps=13 format=3 uid="uid://cdkyhriqkl7oh"]
+
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="1_srst5"]
+[ext_resource type="FontFile" uid="uid://dl7mg7iksf6yp" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_pv7nk"]
+[ext_resource type="Script" path="res://Scripts/menu_focus.gd" id="3_6gtse"]
+[ext_resource type="PackedScene" uid="uid://ce6n3y4eidlxj" path="res://Addons/Weather2D/demo-rose-garden.tscn" id="3_lknbc"]
+[ext_resource type="AudioStream" uid="uid://bm70w1plce317" path="res://Assets/Sounds/jump.wav" id="4_flem7"]
+[ext_resource type="FontFile" uid="uid://iewfikqgo1mg" path="res://Assets/fonts/PixelOperator8.ttf" id="6_yxtwi"]
+[ext_resource type="ButtonGroup" uid="uid://dc4ig7mpyhval" path="res://Scenes/credits_menu.tres" id="7_klg1n"]
+[ext_resource type="Script" path="res://Scenes/menu_button.gd" id="8_40d28"]
+
+[sub_resource type="Animation" id="Animation_u7ge2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_eu87b"]
+resource_name = "play"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 0.138696),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 0.654902, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_duxew"]
+resource_name = "quit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w2ok8"]
+_data = {
+"RESET": SubResource("Animation_u7ge2"),
+"play": SubResource("Animation_eu87b"),
+"quit": SubResource("Animation_duxew")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_srst5")
+
+[node name="Rose_Garden" parent="." instance=ExtResource("3_lknbc")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -112.0
+offset_top = 61.0
+offset_right = 28.0
+offset_bottom = 164.0
+scale = Vector2(2, 2)
+focus_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 12
+script = ExtResource("3_6gtse")
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../Outfits")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_pv7nk")
+text = "Play"
+
+[node name="Outfits" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Play")
+focus_neighbor_bottom = NodePath("../Quit Game")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_pv7nk")
+text = "Outfits"
+
+[node name="Quit Game" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../Outfits")
+focus_neighbor_bottom = NodePath("../../../MenuButton")
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("2_pv7nk")
+text = "Quit Game"
+
+[node name="select" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_flem7")
+volume_db = -6.0
+pitch_scale = 0.6
+bus = &"SFX"
+
+[node name="MenuButton" type="MenuButton" parent="."]
+top_level = true
+layout_mode = 0
+offset_left = -56.0
+offset_top = 304.0
+offset_right = 125.0
+offset_bottom = 343.0
+focus_neighbor_top = NodePath("../MarginContainer/VBoxContainer/Quit Game")
+focus_mode = 2
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("6_yxtwi")
+theme_override_font_sizes/font_size = 30
+button_group = ExtResource("7_klg1n")
+text = "Credits"
+icon_alignment = 1
+switch_on_hover = true
+item_count = 1
+script = ExtResource("8_40d28")
+
+[node name="CenterContainer" type="CenterContainer" parent="MenuButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PopupMenu" type="PopupMenu" parent="MenuButton/CenterContainer"]
+position = Vector2i(466, 25)
+
+[node name="Label" type="Label" parent="MenuButton"]
+z_index = 5
+layout_mode = 0
+offset_left = -832.0
+offset_top = 40.0
+offset_right = 1028.0
+offset_bottom = 109.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("6_yxtwi")
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuButton/Label"]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_right = 1840.0
+offset_bottom = 72.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+top_level = true
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -744.0
+offset_top = -240.0
+offset_right = -744.0
+offset_bottom = -240.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.39904, 1.39904)
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w2ok8")
+}
+speed_scale = 2.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Outfits" to="." method="_on_outfits_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit Game" to="." method="_on_quit_game_pressed"]
+[connection signal="id_pressed" from="MenuButton/CenterContainer/PopupMenu" to="MenuButton" method="_on_popup_menu_id_pressed"]
+[connection signal="resized" from="MenuButton/Label" to="MenuButton" method="_on_label_resized"]

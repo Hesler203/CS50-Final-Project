@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://byl1jy6dt1h6d"]
+
+[ext_resource type="Script" path="res://Scripts/background.gd" id="1_f6dmh"]
+[ext_resource type="Texture2D" uid="uid://cd03b2nrn2dqd" path="res://Assets/Backgrounds/Forest.webp" id="2_u3vkt"]
+[ext_resource type="Texture2D" uid="uid://d0b8q1bp2kfk8" path="res://Assets/Backgrounds/City-3.webp" id="3_ntx68"]
+[ext_resource type="Texture2D" uid="uid://cl4hvrjig6hrn" path="res://Assets/Backgrounds/City-2.webp" id="4_yhwnc"]
+[ext_resource type="Texture2D" uid="uid://deser2tmq6b5y" path="res://Assets/Backgrounds/City-1.webp" id="5_nxiqd"]
+[ext_resource type="PackedScene" uid="uid://5r1mm1wm450d" path="res://Scenes/killzone.tscn" id="6_o31d6"]
+[ext_resource type="Script" path="res://Scripts/forest.gd" id="7_8a8mr"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_84snd"]
+
+[node name="Background" type="Node2D"]
+script = ExtResource("1_f6dmh")
+
+[node name="Forest2" type="Sprite2D" parent="."]
+position = Vector2(15197, 430)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_u3vkt")
+flip_h = true
+
+[node name="Forest" type="Sprite2D" parent="."]
+position = Vector2(11617, 430)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_u3vkt")
+
+[node name="City-3" type="Sprite2D" parent="."]
+position = Vector2(8199, 449.5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_ntx68")
+
+[node name="City-2" type="Sprite2D" parent="."]
+position = Vector2(5020, 448.5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_yhwnc")
+
+[node name="City-1" type="Sprite2D" parent="."]
+position = Vector2(1825, 448)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("5_nxiqd")
+
+[node name="win_zone" parent="." instance=ExtResource("6_o31d6")]
+position = Vector2(12880, 784)
+rotation = -1.57079
+script = ExtResource("7_8a8mr")
+
+[node name="Collision" type="CollisionShape2D" parent="win_zone"]
+position = Vector2(294, 728)
+scale = Vector2(3.21611, 3.21611)
+shape = SubResource("WorldBoundaryShape2D_84snd")
+
+[connection signal="won" from="win_zone" to="." method="_on_win_zone_won"]

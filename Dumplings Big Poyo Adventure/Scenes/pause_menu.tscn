@@ -1,0 +1,143 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3bgjbkd6jx3g"]
+
+[ext_resource type="Script" path="res://Scripts/pause_menu.gd" id="1_qwxu0"]
+[ext_resource type="Shader" path="res://Assets/Backgrounds/pause_menu.gdshader" id="2_mflfk"]
+[ext_resource type="Script" path="res://Scripts/pause_menu_focus.gd" id="3_24oep"]
+[ext_resource type="AudioStream" uid="uid://b38fmq3cjb1r0" path="res://Assets/Sounds/coin.wav" id="3_a326d"]
+[ext_resource type="FontFile" uid="uid://dl7mg7iksf6yp" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_yn4hq"]
+[ext_resource type="FontFile" uid="uid://iewfikqgo1mg" path="res://Assets/fonts/PixelOperator8.ttf" id="5_dx1oj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpxy6"]
+shader = ExtResource("2_mflfk")
+shader_parameter/amount = 2.0
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qwxu0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cpxy6")
+layout_mode = 0
+offset_left = -530.0
+offset_top = -287.0
+offset_right = -490.0
+offset_bottom = -247.0
+scale = Vector2(29.1062, 16.4783)
+color = Color(0, 0, 0, 0)
+
+[node name="pause" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_a326d")
+volume_db = -4.0
+pitch_scale = 0.7
+bus = &"SFX"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+script = ExtResource("3_24oep")
+
+[node name="Resume" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_yn4hq")
+text = "Resume"
+
+[node name="Quit" type="Button" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_yn4hq")
+text = "Quit 
+to Title"
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = -83.0
+offset_top = -74.0
+offset_right = 201.0
+offset_bottom = -32.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer2/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_dx1oj")
+text = "Fly with 
+\"Space\" or \"Up-Arrow\"
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer2/MarginContainer2/VBoxContainer/Label"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 3.0
+offset_top = -8.0
+offset_right = 43.0
+offset_bottom = 32.0
+scale = Vector2(6.97737, 1.50098)
+color = Color(0, 0, 0, 0.117647)
+
+[node name="CenterContainer3" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = -72.0
+offset_top = 108.0
+offset_right = 190.0
+offset_bottom = 150.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer3"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer3/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer3/MarginContainer3/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_dx1oj")
+text = "Move with
+\"Left/Right -Arrows\""
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer3/MarginContainer3/VBoxContainer/Label"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 42.0
+offset_bottom = 32.0
+scale = Vector2(6.47642, 1.54651)
+color = Color(0, 0, 0, 0.117647)
+
+[connection signal="focus" from="." to="CenterContainer/MarginContainer/VBoxContainer" method="_on_pause_menu_focus"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CenterContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

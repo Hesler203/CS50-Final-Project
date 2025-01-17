@@ -1,0 +1,14 @@
+ColorRect
+Timer
+AudioStreamPlayer2D
+HBoxContainer
+MarginContainer
+Label
+Sprite2D
+AnimationPlayer
+CenterContainer
+PopupMenu
+MenuButton
+Button
+VBoxContainer
+CollisionShape2D

@@ -1,0 +1,142 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpgnh4ttdqihh"]
+
+[ext_resource type="Texture2D" uid="uid://dbu5htbylgl6u" path="res://Assets/Backgrounds/dumpling_won.jpg" id="1_sk4go"]
+[ext_resource type="Shader" path="res://Assets/Backgrounds/pause_menu.gdshader" id="1_tsloq"]
+[ext_resource type="FontFile" uid="uid://dl7mg7iksf6yp" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="2_e20kc"]
+[ext_resource type="FontFile" uid="uid://iewfikqgo1mg" path="res://Assets/fonts/PixelOperator8.ttf" id="3_7fy3y"]
+[ext_resource type="PackedScene" uid="uid://c48ygexei26u7" path="res://Scenes/coin.tscn" id="4_gw07j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_newur"]
+shader = ExtResource("1_tsloq")
+shader_parameter/amount = 3.0
+
+[node name="Congratulations" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_newur")
+offset_left = -456.0
+offset_top = -224.0
+offset_right = -416.0
+offset_bottom = -184.0
+scale = Vector2(51.084, 28.9209)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(232, 376)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_sk4go")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 504.0
+offset_top = 88.0
+offset_right = 1329.0
+offset_bottom = 144.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_e20kc")
+theme_override_font_sizes/font_size = 55
+text = "Congratulations!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 576.0
+offset_top = 256.0
+offset_right = 1251.0
+offset_bottom = 361.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_7fy3y")
+theme_override_font_sizes/font_size = 50
+text = "Dumpling made 
+it to the Forest!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 80.0
+offset_top = 8.0
+offset_right = 480.0
+offset_bottom = 48.0
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Y" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Coin" parent="HBoxContainer/Y" instance=ExtResource("4_gw07j")]
+position = Vector2(576, 464)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin2" parent="HBoxContainer/Y" instance=ExtResource("4_gw07j")]
+position = Vector2(632, 520)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin3" parent="HBoxContainer/Y" instance=ExtResource("4_gw07j")]
+position = Vector2(688, 464)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin4" parent="HBoxContainer/Y" instance=ExtResource("4_gw07j")]
+position = Vector2(632, 584)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="A" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Coin" parent="HBoxContainer/A" instance=ExtResource("4_gw07j")]
+position = Vector2(632, 464)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin2" parent="HBoxContainer/A" instance=ExtResource("4_gw07j")]
+position = Vector2(576, 520)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin3" parent="HBoxContainer/A" instance=ExtResource("4_gw07j")]
+position = Vector2(688, 520)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin4" parent="HBoxContainer/A" instance=ExtResource("4_gw07j")]
+position = Vector2(632, 536)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin5" parent="HBoxContainer/A" instance=ExtResource("4_gw07j")]
+position = Vector2(576, 584)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin6" parent="HBoxContainer/A" instance=ExtResource("4_gw07j")]
+position = Vector2(688, 584)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Y2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Coin" parent="HBoxContainer/Y2" instance=ExtResource("4_gw07j")]
+position = Vector2(576, 464)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin2" parent="HBoxContainer/Y2" instance=ExtResource("4_gw07j")]
+position = Vector2(632, 520)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin3" parent="HBoxContainer/Y2" instance=ExtResource("4_gw07j")]
+position = Vector2(688, 464)
+scale = Vector2(5, 6.75)
+script = null
+
+[node name="Coin4" parent="HBoxContainer/Y2" instance=ExtResource("4_gw07j")]
+position = Vector2(632, 584)
+scale = Vector2(5, 6.75)
+script = null

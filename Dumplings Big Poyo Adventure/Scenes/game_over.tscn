@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvn76pvwhvlvn"]
+
+[ext_resource type="Script" path="res://Scripts/game_over.gd" id="1_fskbn"]
+[ext_resource type="Shader" path="res://Assets/Backgrounds/pause_menu.gdshader" id="2_vv3pr"]
+[ext_resource type="FontFile" uid="uid://dl7mg7iksf6yp" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_wt1ep"]
+[ext_resource type="FontFile" uid="uid://iewfikqgo1mg" path="res://Assets/fonts/PixelOperator8.ttf" id="4_1grko"]
+[ext_resource type="Script" path="res://Scripts/game_over_focus.gd" id="5_5tjxy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cpxy6"]
+shader = ExtResource("2_vv3pr")
+shader_parameter/amount = 3.0
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -75.0
+offset_right = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fskbn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_cpxy6")
+layout_mode = 0
+offset_left = -1024.0
+offset_top = -506.0
+offset_right = -984.0
+offset_bottom = -466.0
+scale = Vector2(51.084, 28.9209)
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_left = 115.0
+offset_top = -48.0
+offset_right = 368.0
+offset_bottom = 109.0
+scale = Vector2(1.68503, 1.68503)
+
+[node name="Labels" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 36
+
+[node name="HighScore" type="Label" parent="MarginContainer2/Labels"]
+modulate = Color(1, 0.980392, 0.490196, 1)
+layout_mode = 2
+theme_type_variation = &"GraphFrameTitleLabel"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("3_wt1ep")
+text = "Highscore: --"
+horizontal_alignment = 1
+
+[node name="RunScore" type="Label" parent="MarginContainer2/Labels"]
+layout_mode = 2
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("4_1grko")
+theme_override_font_sizes/font_size = 18
+text = "Seebs 
+this run: --"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TotalSeeb" type="Label" parent="MarginContainer2/Labels"]
+modulate = Color(1, 0.980392, 0.490196, 1)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("3_wt1ep")
+text = "Total Seeb
+ Collected: --"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = -373.0
+offset_right = -234.0
+offset_bottom = 67.0
+scale = Vector2(3.0687, 3.0687)
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+script = ExtResource("5_5tjxy")
+
+[node name="Retry" type="Button" parent="MarginContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_wt1ep")
+theme_override_font_sizes/font_size = 12
+text = "Retry"
+
+[node name="Quit" type="Button" parent="MarginContainer/Buttons"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("3_wt1ep")
+theme_override_font_sizes/font_size = 12
+text = "Quit 
+to Title"
+
+[connection signal="focus" from="." to="MarginContainer/Buttons" method="_on_game_over_focus"]
+[connection signal="pressed" from="MarginContainer/Buttons/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="MarginContainer/Buttons/Quit" to="." method="_on_quit_pressed"]
